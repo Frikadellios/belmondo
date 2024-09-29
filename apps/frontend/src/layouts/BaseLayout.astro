@@ -1,0 +1,55 @@
+---
+import '@/styles/globals.css'
+
+export interface Props {
+  title?: string | undefined
+  description?: string | undefined
+  author?: string | undefined
+  keywords?: string | undefined
+}
+
+const { title, description, author, keywords } = Astro.props
+---
+
+<script is:inline>
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+	if (typeof localStorage !== 'undefined') {
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script>
+
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    {title ? <meta name="title" content={title} /> : null}
+    {description ? <meta name="description" content={description} /> : null}
+    {author ? <meta name="author" content={author} /> : null}
+    {keywords ? <meta name="keywords" content={keywords} /> : null}
+
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* <link rel="sitemap" href="/sitemap-index.xml" /> */}
+    {/* <link rel="canonical" href={head.canonicalUrl} /> */}
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-background text-foreground grid min-h-screen grid-rows-[auto_1fr_auto]">
+    <slot />
+  </body>
+</html>

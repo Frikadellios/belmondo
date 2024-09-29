@@ -1,20 +1,64 @@
 {
+  "name": "belmondo",
+  "packageManager": "bun@1.1.26",
+  "workspaces": ["apps/*", "packages/*"],
   "private": true,
+  "keywords": [
+    "template",
+    "turborepo",
+    "biomejs",
+    "bun",
+    "typescript",
+    "tailwindcss",
+    "astrojs",
+    "vue",
+    "cms",
+    "cloudflare",
+    "react",
+    "shadcn"
+  ],
+  "author": "Hrihorii Ilin <devopsick@pm.me>",
+  "license": "MIT",
+  "description": "Gift for Jane School - Ukrainian from Ukrainian :-D",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Frikadellios/belmondo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Frikadellios/belmondo/issues"
+  },
+  "homepage": "https://github.com/Frikadellios/belmondo/readme",
+  "engines": {
+    "node": ">=18.19.1 <19 || >=20.17.0 <21 || >=21.1.0"
+  },
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "editorconfig": "editorconfig-checker -exclude \"**/node_modules/**\"",
+    "browserslist": "bunx update-browserslist-db@latest",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "ui": "bun --filter @repo/ui ui",
+    "lint": "conc bun:lint:*",
+    "lint:format": "bunx @biomejs/biome format . --write",
+    "lint:fix": "bunx @biomejs/biome check . --fix",
+    "lint:check": "bunx @biomejs/biome check ./* --write --unsafe"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
-    "turbo": "^2.1.2"
+    "@biomejs/biome": "1.9.2",
+    "@types/bun": "latest",
+    "@types/mdx": "latest",
+    "@types/node": "latest",
+    "@types/web": "latest",
+    "bun-devtools": "latest",
+    "bun-types": "latest",
+    "editorconfig-checker": "^6.0.0",
+    "turbo": "latest"
   },
-  "name": "with-vite",
-  "packageManager": "bun@1.1.26",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "peerDependencies": {
+    "typescript": "^5.6.2"
+  },
+  "trustedDependencies": ["@biomejs/biome", "core-js", "esbuild", "sharp"],
+  "dependencies": {
+    "caniuse-lite": "^1.0.30001664",
+    "concurrently": "^9.0.1"
+  }
 }
