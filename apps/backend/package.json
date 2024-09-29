@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "editorconfig": "editorconfig-checker -exclude \"**/node_modules/**\"",
+    "browserslist": "bunx update-browserslist-db@latest",
     "dev": "bunx --bun vite",
     "build": "bun --bun vite build",
     "preview": "bun run build && wrangler pages dev ./dist",
@@ -11,34 +13,48 @@
     "deploy": "bun run build && wrangler pages deploy ./dist"
   },
   "dependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.9",
+    "@tiptap/pm": "^2.7.4",
+    "@tiptap/starter-kit": "^2.7.4",
+    "@tiptap/vue-3": "^2.7.4",
     "@vueuse/core": "^11.1.0",
+    "browserslist": "^4.24.0",
+    "caniuse-lite": "^1.0.30001664",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.446.0",
     "radix-vue": "^1.9.6",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "tsc": "^2.0.4",
+    "tsx": "^4.19.1",
     "vite-tsconfig-paths": "^5.0.1",
-    "vue": "^3.4.29",
-    "vue-router": "^4.3.3"
+    "vue": "^3.5.10",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@csstools/postcss-oklab-function": "^4.0.2",
     "@iconify-json/radix-icons": "^1.2.0",
     "@iconify/vue": "^4.1.2",
-    "@playwright/test": "^1.44.1",
+    "@playwright/test": "^1.47.2",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.7.4",
     "@vitejs/plugin-legacy": "^5.4.2",
-    "@vitejs/plugin-vue": "^5.0.5",
-    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitejs/plugin-vue-jsx": "^4.0.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "postcss-discard-comments": "^7.0.3",
     "postcss-preset-env": "^10.0.5",
     "tailwindcss": "^3.4.13",
-    "vite": "^5.3.1",
-    "vite-plugin-vue-devtools": "^7.3.1",
-    "wrangler": "^3.78.12"
+    "vite": "^5.4.8",
+    "vite-plugin-vue-devtools": "^7.4.6",
+    "wrangler": "^3.78.12",
+    "@types/bun": "latest"
+  },
+  "module": "index.ts",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }
