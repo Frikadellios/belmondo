@@ -3,15 +3,10 @@
   "display": "vuebun",
   "extends": "@repo/typescript-config/vue.json",
   "compilerOptions": {
-    "types": [
-      "vite/client",
-      "bun-types"
-    ],
+    "types": ["vite/client", "bun-types"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   }
 }

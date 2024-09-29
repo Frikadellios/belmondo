@@ -3,29 +3,29 @@
 </template>
 
 <script>
-  import { Editor, EditorContent } from '@tiptap/vue-3'
-  import StarterKit from '@tiptap/starter-kit'
+import StarterKit from '@tiptap/starter-kit'
+import { Editor, EditorContent } from '@tiptap/vue-3'
 
-  export default {
-    components: {
-      EditorContent,
-    },
+export default {
+  components: {
+    EditorContent
+  },
 
-    data() {
-      return {
-        editor: null,
-      }
-    },
+  data() {
+    return {
+      editor: null
+    }
+  },
 
-    mounted() {
-      this.editor = new Editor({
-        content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
-        extensions: [StarterKit],
-      })
-    },
+  mounted() {
+    this.editor = new Editor({
+      content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+      extensions: [StarterKit]
+    })
+  },
 
-    beforeUnmount() {
-      this.editor.destroy()
-    },
+  beforeUnmount() {
+    this.editor.destroy()
   }
+}
 </script>
