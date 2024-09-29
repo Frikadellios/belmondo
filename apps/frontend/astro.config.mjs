@@ -42,15 +42,18 @@ export default defineConfig({
       external: ['node:buffer', 'three']
     },
     plugins: [
-      tailwind({
-        nesting: true,
-        applyBaseStyles: false
-      }),
       tsconfigPaths(),
       legacy({
         targets: ['defaults', 'not IE 11']
       })
     ]
   },
-  integrations: [react(), mdx()]
+  integrations: [
+    react(),
+    tailwind({
+      nesting: true,
+      applyBaseStyles: false
+    }),
+    mdx()
+  ]
 })
