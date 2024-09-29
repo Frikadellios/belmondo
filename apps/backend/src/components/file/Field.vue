@@ -80,7 +80,7 @@ const fieldErrors = ref([])
 const listErrors = ref([])
 
 const fieldComponent = computed(() => {
-  return fieldRegistry[props.field.type]?.EditComponent || fieldRegistry['text']?.EditComponent || null
+  return fieldRegistry[props.field.type]?.EditComponent || fieldRegistry.text?.EditComponent || null
 })
 
 const fieldListSupport = computed(() => {
@@ -103,13 +103,13 @@ const validate = () => {
 
   if (fieldListSupport.value || !props.field.list) {
     // Validate single field and field list with list support
-    if (fieldRef.value && fieldRef.value.validate) {
+    if (fieldRef.value?.validate) {
       fieldErrors.value = fieldRef.value.validate()
     }
   } else {
     // Handle list fields without internal support
     fieldRefs.value.forEach((fieldComponentInstance) => {
-      if (fieldComponentInstance && fieldComponentInstance.validate) {
+      if (fieldComponentInstance?.validate) {
         const validationErrors = fieldComponentInstance.validate()
         if (validationErrors.length) fieldErrors.value = fieldErrors.value.concat(validationErrors)
       }

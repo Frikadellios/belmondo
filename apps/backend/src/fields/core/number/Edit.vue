@@ -32,7 +32,7 @@ const props = defineProps({
 
 const updateModelValue = (value) => {
   const numericValue = value === '' ? null : Number.parseFloat(value)
-  emit('update:modelValue', isNaN(numericValue) ? null : numericValue)
+  emit('update:modelValue', Number.isNaN(numericValue) ? null : numericValue)
 }
 
 const errors = ref([])

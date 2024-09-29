@@ -18,6 +18,7 @@ const parse = (content = '', options = {}) => {
     `^(${startDelimiter}(?:\\n|\\r)?([\\s\\S]+?)(?:\\n|\\r)?${endDelimiter})\\n*([\\s\\S]*)`
   )
   const match = frontmatterRegex.exec(content)
+  // biome-ignore lint/style/useConst: <explanation>
   let contentObject
   if (!match) {
     return { body: content }
@@ -75,20 +76,21 @@ const serialize = (contentObject = '', format = 'yaml') => {
 
 // Sets the start/end delimiters for frontmatter
 const setDelimiter = (delimiters, format) => {
-  if (delimiters === undefined) {
+  let resultDelimiters = delimiters
+  if (resultDelimiters === undefined) {
     switch (format) {
       case 'toml-frontmatter':
-        delimiters = '+++'
+        resultDelimiters = '+++'
         break
       default:
-        delimiters = '---'
+        resultDelimiters = '---'
     }
   }
-  if (typeof delimiters === 'string') {
-    delimiters = [delimiters, delimiters]
+  if (typeof resultDelimiters === 'string') {
+    resultDelimiters = [resultDelimiters, resultDelimiters]
   }
 
-  return delimiters
+  return resultDelimiters
 }
 
 export default { parse, stringify }

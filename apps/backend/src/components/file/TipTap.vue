@@ -335,7 +335,7 @@ const insertImage = async () => {
 }
 
 const importContent = async (content) => {
-  let htmlContent = props.format == 'markdown' ? marked(content) : content
+  let htmlContent = props.format === 'markdown' ? marked(content) : content
   htmlContent = githubImg.htmlSwapPrefix(htmlContent, prefixOutput.value, prefixInput.value, true)
   // TODO: find a way to display spinner while the files are being loaded.
   htmlContent = await githubImg.relativeToRawUrls(
@@ -353,7 +353,7 @@ const exportContent = (content) => {
   let htmlContent = githubImg.rawToRelativeUrls(repoStore.owner, repoStore.repo, repoStore.branch, content)
   htmlContent = githubImg.htmlSwapPrefix(htmlContent, prefixInput.value, prefixOutput.value)
 
-  return props.format == 'markdown' ? turndownService.turndown(htmlContent) : htmlContent
+  return props.format === 'markdown' ? turndownService.turndown(htmlContent) : htmlContent
 }
 
 const setContent = async () => {
@@ -472,10 +472,9 @@ const upload = async (file) => {
           )
         }
         return data.content.path
-      } else {
-        notifications.notify(`File upload failed.`, 'error')
-        return
       }
+      notifications.notify('File upload failed.', 'error')
+      return
     }
   }
 }

@@ -130,7 +130,9 @@ export default function useSchema() {
       .replace(/\{second\}/g, moment().format('ss'))
 
     // Replace `{primary}` with the actual name of the primary field
-    const primaryField = schema.view?.primary || (Object.prototype.hasOwnProperty.call(model, 'title') ? 'title' : schema.fields?.[0]?.name)
+    const primaryField =
+      schema.view?.primary ||
+      (Object.prototype.hasOwnProperty.call(model, 'title') ? 'title' : schema.fields?.[0]?.name)
     modifiedPattern = modifiedPattern.replace(/\{primary\}/g, primaryField ? `{fields.${primaryField}}` : '')
 
     // Replace field placeholders
