@@ -1,27 +1,27 @@
 ---
+import TailwindIndicator from '@/components/layout/tailwind-indicator.astro'
+import { cn } from '@/lib/utils'
 import BaseLayout from './BaseLayout.astro'
+type Props = {
+  title: string
+  description?: string
+  lang?: string
+  mainClass?: string
+  bodyClass?: string
+}
+import '@/styles/tailwind.css'
+const { title, description, mainClass } = Astro.props as Props
 ---
 
-<BaseLayout>
-  <main class="layout">
-    <slot />
-  </main>
+<BaseLayout title={title} description={description}>
+  <main class={cn(mainClass)}>
+				<slot />
+				<TailwindIndicator />
+		</main>
+      <style is:global>
+			img {
+				content-visibility: auto;
+			}
+		</style>
 </BaseLayout>
 
-<style>
-  header:is(.layout) {
-    @apply bg-slate-200 text-slate-800 h-20 z-10;
-
-    nav a {
-      @apply font-medium text-lg items-center text-sky-900 hover:text-sky-950 hover:underline transition;
-    }
-  }
-
-  main:is(.layout) {
-    @apply container py-8 sm:py-12;
-  }
-
-  footer:is(.layout) {
-    @apply bg-slate-200 text-slate-800 h-20;
-  }
-</style>

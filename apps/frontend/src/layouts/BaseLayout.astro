@@ -1,14 +1,17 @@
 ---
 import '@/styles/globals.css'
+import ViewTransitions from 'astro/components/ViewTransitions.astro'
 
 export interface Props {
   title?: string | undefined
   description?: string | undefined
   author?: string | undefined
   keywords?: string | undefined
+  bodyClass?: string
 }
-
-const { title, description, author, keywords } = Astro.props
+import ProviderAnimations from '@/components/layout/provider-animations.astro'
+import { cn } from '@/lib/utils'
+const { author, keywords, title, description, bodyClass } = Astro.props as Props
 ---
 
 <script is:inline>
@@ -44,12 +47,12 @@ const { title, description, author, keywords } = Astro.props
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    {/* <link rel="sitemap" href="/sitemap-index.xml" /> */}
-    {/* <link rel="canonical" href={head.canonicalUrl} /> */}
+    <ProviderAnimations />
+    <ViewTransitions />
 
     <title>{title}</title>
   </head>
-  <body class="bg-background text-foreground grid min-h-screen grid-rows-[auto_1fr_auto]">
-    <slot />
-  </body>
+  <body class={cn('flex page bg-background text-foreground antialiased min-h-screen', bodyClass)}>
+			<slot />
+	</body>
 </html>

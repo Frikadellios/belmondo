@@ -103,7 +103,7 @@
 
 @layer base {
   @font-face {
-    font-family: "DaysOneRegular", sans-serif;
+    font-family: "DaysOne";
     src: url("/fonts/DaysOne/DaysOneRegular/DaysOneRegular.eot");
     src: url("/fonts/DaysOne/DaysOneRegular/DaysOneRegular.eot?#iefix") format("embedded-opentype"),
       url("/fonts/DaysOne/DaysOneRegular/DaysOneRegular.woff") format("woff"),
@@ -113,12 +113,25 @@
     font-display: swap;
   }
 
-  * {
-    @apply border-border;
+  .text-color {
+    @apply animate-[animate8345_9s_linear_infinite];
+    background: linear-gradient(to right, #2d60ec, #3ccfda);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
   }
-
-  .prose code {
-    @apply text-base;
+  .wrap {
+    @apply flex items-center justify-center py-10 px-4 mb-5 mt-5;
+  }
+  .circle {
+    @apply w-[300px] h-[300px] overflow-hidden animate-[morph_5s_linear_infinite] rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%];
+    background: transparent;
+  }
+  .circle img {
+    @apply w-full;
+  }
+  .circle1 {
+    @apply w-[250px] h-[250px] overflow-hidden animate-[morph_5s_linear_infinite] rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%];
+    background: transparent;
   }
 
   :where(.prose) {
@@ -173,9 +186,6 @@
     display: flex;
     flex-direction: column;
     font-synthesis-weight: none;
-    font-family: "Days One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
     text-rendering: optimizeLegibility;
     font-feature-settings: "rlig" 1, "calt" 1;
     color: rgb(var(--foreground-rgb));
@@ -277,48 +287,14 @@ header {
   initial-value: solid;
 }
 
-.container {
-  margin: 0 auto;
-  padding: 0 2rem;
-  width: 100%;
-}
-
-.days-one-regular {
-  font-family: "Days One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-header {
-  background-color: transparent;
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-}
-
-@media (min-width: 1400px) {
-  .container {
-    max-width: 1400px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  :root {
-    --velocidad-marquee: 5s;
-  }
-}
-
-@property --tw-outline-style {
-  syntax: "<custom-ident>";
-  inherits: false;
-  initial-value: solid;
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .step {
+    counter-increment: step;
   }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
+
+  .step:before {
+    @apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-base font-medium;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
   }
 }
